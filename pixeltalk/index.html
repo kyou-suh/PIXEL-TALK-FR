@@ -6,14 +6,8 @@
 
   <title>PixelTalk — Anonymous Freedom Wall</title>
 
-  <meta
-    name="description"
-    content="PixelTalk — say what you want, anonymously."
-  >
-
   <link rel="stylesheet" href="style.css">
 
-  <!-- Pixel / Retro fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -25,10 +19,7 @@
 
 <body>
 
-  <!-- =========================
-       RETRO SPACE BACKGROUND
-  ========================== -->
-
+  <!-- BACKGROUND -->
   <div class="space-background">
 
     <div class="stars stars-one"></div>
@@ -38,10 +29,8 @@
     <div class="planet planet-one"></div>
     <div class="planet planet-two"></div>
 
-    <!-- Moving pixel spaceship -->
     <div class="pixel-ship">🚀</div>
 
-    <!-- Floating elements -->
     <div class="pixel-heart heart-one">💗</div>
     <div class="pixel-heart heart-two">💜</div>
     <div class="pixel-heart heart-three">💙</div>
@@ -49,13 +38,10 @@
   </div>
 
 
-  <!-- =========================
-       MAIN CONTENT
-  ========================== -->
-
+  <!-- MAIN -->
   <main class="game-container">
 
-    <!-- TOP ARCADE BAR -->
+    <!-- HEADER -->
     <header class="arcade-header">
 
       <div class="score">
@@ -73,7 +59,7 @@
     </header>
 
 
-    <!-- TITLE -->
+    <!-- HERO -->
     <section class="hero">
 
       <div class="pixel-label">
@@ -97,7 +83,7 @@
     </section>
 
 
-    <!-- MESSAGE CARD -->
+    <!-- MESSAGE FORM -->
     <section class="message-card">
 
       <div class="card-top">
@@ -127,26 +113,34 @@
           <span id="charCount">0</span>/500
         </div>
 
-        <button type="submit" id="sendButton">
+        <button
+          type="submit"
+          id="sendButton"
+        >
           🚀 SEND MESSAGE
         </button>
 
       </form>
 
 
-      <div id="statusMessage" class="status-message"></div>
+      <div
+        id="statusMessage"
+        class="status-message"
+      ></div>
 
     </section>
 
 
-    <!-- DISCLAIMER -->
+    <!-- INFO -->
     <section class="anonymous-box">
 
       <div class="pixel-icon">
         👾
       </div>
 
-      <h3>YOUR MESSAGE IS ANONYMOUS.</h3>
+      <h3>
+        YOUR MESSAGE IS ANONYMOUS.
+      </h3>
 
       <p>
         Say something you've always wanted to say,
@@ -160,7 +154,15 @@
     </section>
 
 
-    <!-- FOOTER -->
+    <!-- PRIVATE NOTE -->
+    <section class="private-note">
+
+      🔐 YOUR SUBMISSION IS SENT PRIVATELY
+      TO THE PIXELTALK INBOX.
+
+    </section>
+
+
     <footer>
       © 2026 PixelTalk by KLOWI
     </footer>
@@ -168,11 +170,11 @@
   </main>
 
 
-  <!-- =========================
-       FIREBASE + SCRIPT
-  ========================== -->
-
-  <script type="module" src="script.js"></script>
+  <!-- JAVASCRIPT -->
+  <script
+    type="module"
+    src="script.js"
+  ></script>
 
 </body>
 </html>
