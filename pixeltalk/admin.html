@@ -398,10 +398,10 @@
 
         } catch (error) {
 
-          console.error(error);
+          console.error("Firebase Login Error:" error);
 
           loginMessage.textContent =
-            "❌ LOGIN FAILED. CHECK YOUR EMAIL/PASSWORD.";
+            "❌" + error.code;
 
           loginMessage.className =
             "message error";
