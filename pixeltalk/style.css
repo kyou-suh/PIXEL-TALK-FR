@@ -1,7 +1,3 @@
-/* =========================================
-   PIXELTALK — RETRO SPACE ARCADE
-========================================= */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,75 +10,128 @@ html {
 
 body {
   min-height: 100vh;
+
   font-family: "VT323", monospace;
+
   color: #ffffff;
+
   overflow-x: hidden;
 
   background:
-    radial-gradient(circle at 20% 20%, #51248f 0%, transparent 25%),
-    radial-gradient(circle at 80% 80%, #8b174e 0%, transparent 30%),
-    linear-gradient(135deg, #090021, #160039 45%, #09001f);
+    radial-gradient(
+      circle at 20% 20%,
+      #51248f 0%,
+      transparent 25%
+    ),
+
+    radial-gradient(
+      circle at 80% 80%,
+      #8b174e 0%,
+      transparent 30%
+    ),
+
+    linear-gradient(
+      135deg,
+      #090021,
+      #160039 45%,
+      #09001f
+    );
 }
 
 
-/* =========================================
+/* =================================
    SPACE BACKGROUND
-========================================= */
+================================= */
 
 .space-background {
   position: fixed;
+
   inset: 0;
+
   overflow: hidden;
+
   z-index: -1;
+
   background:
-    radial-gradient(circle at center, #241052 0%, #09001d 65%, #03000c 100%);
+    radial-gradient(
+      circle at center,
+      #241052 0%,
+      #09001d 65%,
+      #03000c 100%
+    );
 }
-
-
-/* Stars */
 
 .stars {
   position: absolute;
+
   inset: 0;
+
   background-repeat: repeat;
+
   pointer-events: none;
 }
 
 .stars-one {
-  opacity: 0.9;
+
+  opacity: .9;
 
   background-image:
-    radial-gradient(circle, #ffffff 1px, transparent 1px),
-    radial-gradient(circle, #ff79d1 1px, transparent 1px);
+    radial-gradient(
+      circle,
+      #ffffff 1px,
+      transparent 1px
+    ),
 
-  background-size: 90px 90px, 140px 140px;
+    radial-gradient(
+      circle,
+      #ff79d1 1px,
+      transparent 1px
+    );
 
-  animation: starMove 18s linear infinite;
+  background-size:
+    90px 90px,
+    140px 140px;
+
+  animation:
+    starMove 18s linear infinite;
 }
 
 .stars-two {
-  opacity: 0.6;
+
+  opacity: .6;
 
   background-image:
-    radial-gradient(circle, #ffffff 1.5px, transparent 1.5px);
+    radial-gradient(
+      circle,
+      #ffffff 1.5px,
+      transparent 1.5px
+    );
 
   background-size: 180px 180px;
 
-  animation: starMove 30s linear infinite reverse;
+  animation:
+    starMove 30s linear infinite reverse;
 }
 
 .stars-three {
-  opacity: 0.45;
+
+  opacity: .45;
 
   background-image:
-    radial-gradient(circle, #75eaff 1px, transparent 1px);
+    radial-gradient(
+      circle,
+      #75eaff 1px,
+      transparent 1px
+    );
 
   background-size: 240px 240px;
 
-  animation: starMove 45s linear infinite;
+  animation:
+    starMove 45s linear infinite;
 }
 
 @keyframes starMove {
+
   from {
     transform: translateY(0);
   }
@@ -90,70 +139,111 @@ body {
   to {
     transform: translateY(180px);
   }
+
 }
 
 
-/* =========================================
+/* =================================
    PLANETS
-========================================= */
+================================= */
 
 .planet {
+
   position: absolute;
+
   border-radius: 50%;
-  image-rendering: pixelated;
 }
 
 .planet-one {
+
   width: 95px;
   height: 95px;
+
   top: 12%;
   left: 5%;
 
   background:
-    radial-gradient(circle at 30% 30%, #ffb5e8 0 8%, transparent 9%),
-    radial-gradient(circle at 60% 65%, #d633a4 0 15%, transparent 16%),
-    linear-gradient(135deg, #ff4da6, #7328c9);
+    radial-gradient(
+      circle at 30% 30%,
+      #ffb5e8 0 8%,
+      transparent 9%
+    ),
+
+    radial-gradient(
+      circle at 60% 65%,
+      #d633a4 0 15%,
+      transparent 16%
+    ),
+
+    linear-gradient(
+      135deg,
+      #ff4da6,
+      #7328c9
+    );
 
   box-shadow:
     0 0 15px #ff4da6,
     0 0 35px #8c35ff;
 
-  animation: planetFloat 5s ease-in-out infinite;
+  animation:
+    planetFloat 5s ease-in-out infinite;
 }
 
 .planet-two {
+
   width: 55px;
   height: 55px;
+
   right: 7%;
   top: 35%;
 
   background:
-    radial-gradient(circle at 35% 30%, #b8ffff 0 8%, transparent 9%),
-    linear-gradient(135deg, #24d9ff, #3641cf);
+    radial-gradient(
+      circle at 35% 30%,
+      #b8ffff 0 8%,
+      transparent 9%
+    ),
 
-  box-shadow: 0 0 25px #29dfff;
+    linear-gradient(
+      135deg,
+      #24d9ff,
+      #3641cf
+    );
 
-  animation: planetFloat 7s ease-in-out infinite reverse;
+  box-shadow:
+    0 0 25px #29dfff;
+
+  animation:
+    planetFloat 7s ease-in-out infinite reverse;
 }
 
 @keyframes planetFloat {
+
   0%, 100% {
-    transform: translateY(0) rotate(0deg);
+    transform:
+      translateY(0)
+      rotate(0deg);
   }
 
   50% {
-    transform: translateY(-18px) rotate(8deg);
+    transform:
+      translateY(-18px)
+      rotate(8deg);
   }
+
 }
 
 
-/* =========================================
-   MOVING SPACESHIP
-========================================= */
+/* =================================
+   SPACESHIP
+================================= */
 
 .pixel-ship {
+
   position: absolute;
+
   left: -100px;
+
   top: 70%;
 
   font-size: 42px;
@@ -162,36 +252,48 @@ body {
     drop-shadow(0 0 5px #ff65cf)
     drop-shadow(0 0 15px #8e44ff);
 
-  animation: spaceshipMove 18s linear infinite;
+  animation:
+    spaceshipMove 18s linear infinite;
 }
 
 @keyframes spaceshipMove {
+
   0% {
     left: -100px;
     transform: rotate(-3deg);
   }
 
   45% {
-    transform: translateY(-35px) rotate(3deg);
+    transform:
+      translateY(-35px)
+      rotate(3deg);
   }
 
   100% {
     left: 110%;
-    transform: translateY(10px) rotate(-3deg);
+
+    transform:
+      translateY(10px)
+      rotate(-3deg);
   }
+
 }
 
 
-/* =========================================
-   FLOATING HEARTS
-========================================= */
+/* =================================
+   HEARTS
+================================= */
 
 .pixel-heart {
-  position: absolute;
-  font-size: 25px;
-  opacity: 0.8;
 
-  animation: heartFloat 6s ease-in-out infinite;
+  position: absolute;
+
+  font-size: 25px;
+
+  opacity: .8;
+
+  animation:
+    heartFloat 6s ease-in-out infinite;
 }
 
 .heart-one {
@@ -212,6 +314,7 @@ body {
 }
 
 @keyframes heartFloat {
+
   0%, 100% {
     transform: translateY(0);
   }
@@ -219,27 +322,35 @@ body {
   50% {
     transform: translateY(-25px);
   }
+
 }
 
 
-/* =========================================
-   MAIN CONTAINER
-========================================= */
+/* =================================
+   CONTAINER
+================================= */
 
 .game-container {
+
   width: min(92%, 700px);
-  margin: 0 auto;
-  padding: 35px 0 50px;
+
+  margin: auto;
+
+  padding:
+    35px 0 50px;
 }
 
 
-/* =========================================
-   ARCADE HEADER
-========================================= */
+/* =================================
+   HEADER
+================================= */
 
 .arcade-header {
+
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
 
   padding: 14px 18px;
@@ -250,15 +361,21 @@ body {
 
   box-shadow:
     0 0 0 4px #551c7d,
-    0 0 20px rgba(255, 59, 190, 0.5);
+    0 0 20px rgba(255,59,190,.5);
 
-  font-family: "Press Start 2P", monospace;
+  font-family:
+    "Press Start 2P",
+    monospace;
+
   font-size: 10px;
 }
 
 .logo-small {
+
   color: #79eaff;
-  text-shadow: 2px 2px #8d32e6;
+
+  text-shadow:
+    2px 2px #8d32e6;
 }
 
 .score {
@@ -270,35 +387,51 @@ body {
 }
 
 
-/* =========================================
+/* =================================
    HERO
-========================================= */
+================================= */
 
 .hero {
+
   text-align: center;
-  padding: 55px 10px 35px;
+
+  padding:
+    55px 10px 35px;
 }
 
 .pixel-label {
+
   display: inline-block;
 
-  padding: 9px 14px;
+  padding:
+    9px 14px;
+
   margin-bottom: 20px;
 
   background: #27104d;
+
   border: 2px solid #7eeaff;
 
   color: #7eeaff;
 
-  font-family: "Press Start 2P", monospace;
+  font-family:
+    "Press Start 2P",
+    monospace;
+
   font-size: 9px;
 
-  box-shadow: 4px 4px 0 #ff3fae;
+  box-shadow:
+    4px 4px 0 #ff3fae;
 }
 
 .hero h1 {
-  font-family: "Press Start 2P", monospace;
-  font-size: clamp(28px, 8vw, 54px);
+
+  font-family:
+    "Press Start 2P",
+    monospace;
+
+  font-size:
+    clamp(28px, 8vw, 54px);
 
   color: #ff65bd;
 
@@ -306,10 +439,12 @@ body {
     4px 4px 0 #6324a5,
     0 0 18px #ff3fae;
 
-  animation: titleGlow 2.5s ease-in-out infinite;
+  animation:
+    titleGlow 2.5s ease-in-out infinite;
 }
 
 @keyframes titleGlow {
+
   0%, 100% {
     filter: brightness(1);
   }
@@ -317,97 +452,121 @@ body {
   50% {
     filter: brightness(1.3);
   }
+
 }
 
 .subtitle {
+
   margin-top: 20px;
 
-  font-family: "Press Start 2P", monospace;
+  font-family:
+    "Press Start 2P",
+    monospace;
+
   font-size: 12px;
 
   color: #a8f5ff;
 }
 
 .instruction {
+
   margin-top: 18px;
 
   font-size: 22px;
+
   color: #f7d8ff;
 }
 
 .player-status {
+
   margin-top: 18px;
 
   font-size: 19px;
+
   color: #91ffbd;
 }
 
 
-/* =========================================
+/* =================================
    MESSAGE CARD
-========================================= */
+================================= */
 
 .message-card {
-  position: relative;
 
   padding: 28px;
 
   background:
     linear-gradient(
       145deg,
-      rgba(45, 12, 76, 0.95),
-      rgba(13, 6, 36, 0.96)
+      rgba(45,12,76,.95),
+      rgba(13,6,36,.96)
     );
 
   border: 4px solid #ff55b8;
 
   box-shadow:
     8px 8px 0 #512090,
-    0 0 35px rgba(255, 62, 185, 0.25);
+    0 0 35px rgba(255,62,185,.25);
 
   backdrop-filter: blur(5px);
 }
 
 .card-top {
+
   display: flex;
+
   justify-content: space-between;
 
   color: #72eaff;
 
-  font-family: "Press Start 2P", monospace;
+  font-family:
+    "Press Start 2P",
+    monospace;
+
   font-size: 8px;
 
   margin-bottom: 28px;
 }
 
 .message-card h2 {
-  font-family: "Press Start 2P", monospace;
-  font-size: clamp(19px, 5vw, 28px);
+
+  font-family:
+    "Press Start 2P",
+    monospace;
+
+  font-size:
+    clamp(19px, 5vw, 28px);
 
   color: #fff;
 
   margin-bottom: 18px;
 
-  text-shadow: 3px 3px #7b2bc5;
+  text-shadow:
+    3px 3px #7b2bc5;
 }
 
 .description {
+
   font-size: 21px;
+
   line-height: 1.15;
+
   color: #eecfff;
 
   margin-bottom: 22px;
 }
 
 
-/* =========================================
+/* =================================
    TEXTAREA
-========================================= */
+================================= */
 
 textarea {
+
   display: block;
 
   width: 100%;
+
   min-height: 150px;
 
   padding: 16px;
@@ -415,17 +574,24 @@ textarea {
   resize: vertical;
 
   border: 3px solid #8b4bd3;
+
   outline: none;
 
   background: #080516;
+
   color: #ffffff;
 
-  font-family: "VT323", monospace;
+  font-family:
+    "VT323",
+    monospace;
+
   font-size: 22px;
 
-  box-shadow: inset 0 0 15px rgba(122, 47, 255, 0.3);
+  box-shadow:
+    inset 0 0 15px
+    rgba(122,47,255,.3);
 
-  transition: 0.2s;
+  transition: .2s;
 }
 
 textarea::placeholder {
@@ -433,28 +599,34 @@ textarea::placeholder {
 }
 
 textarea:focus {
+
   border-color: #ff5cbd;
 
   box-shadow:
-    0 0 15px rgba(255, 92, 189, 0.4),
-    inset 0 0 15px rgba(122, 47, 255, 0.3);
+    0 0 15px
+    rgba(255,92,189,.4),
+    inset 0 0 15px
+    rgba(122,47,255,.3);
 }
 
 .character-count {
+
   text-align: right;
 
   margin-top: 6px;
 
   color: #a991b9;
+
   font-size: 18px;
 }
 
 
-/* =========================================
+/* =================================
    BUTTON
-========================================= */
+================================= */
 
 button {
+
   width: 100%;
 
   margin-top: 16px;
@@ -464,9 +636,13 @@ button {
   border: 3px solid #fff;
 
   background: #ff3eaa;
+
   color: #ffffff;
 
-  font-family: "Press Start 2P", monospace;
+  font-family:
+    "Press Start 2P",
+    monospace;
+
   font-size: 11px;
 
   cursor: pointer;
@@ -474,11 +650,13 @@ button {
   box-shadow:
     5px 5px 0 #6c279b;
 
-  transition: 0.15s;
+  transition: .15s;
 }
 
 button:hover {
-  transform: translate(-2px, -2px);
+
+  transform:
+    translate(-2px, -2px);
 
   background: #ff64bd;
 
@@ -487,23 +665,28 @@ button:hover {
 }
 
 button:active {
-  transform: translate(3px, 3px);
+
+  transform:
+    translate(3px, 3px);
 
   box-shadow:
     2px 2px 0 #6c279b;
 }
 
 button:disabled {
-  opacity: 0.6;
+
+  opacity: .6;
+
   cursor: wait;
 }
 
 
-/* =========================================
+/* =================================
    STATUS
-========================================= */
+================================= */
 
 .status-message {
+
   min-height: 30px;
 
   margin-top: 15px;
@@ -522,32 +705,41 @@ button:disabled {
 }
 
 
-/* =========================================
+/* =================================
    ANONYMOUS BOX
-========================================= */
+================================= */
 
 .anonymous-box {
+
   margin-top: 35px;
 
   padding: 25px;
 
   text-align: center;
 
-  background: rgba(17, 5, 35, 0.85);
+  background:
+    rgba(17,5,35,.85);
 
-  border: 3px dashed #7eeaff;
+  border:
+    3px dashed #7eeaff;
 
-  box-shadow: 0 0 20px rgba(86, 223, 255, 0.12);
+  box-shadow:
+    0 0 20px
+    rgba(86,223,255,.12);
 }
 
 .pixel-icon {
+
   font-size: 32px;
+
   margin-bottom: 12px;
 
-  animation: alienBounce 2s ease-in-out infinite;
+  animation:
+    alienBounce 2s ease-in-out infinite;
 }
 
 @keyframes alienBounce {
+
   0%, 100% {
     transform: translateY(0);
   }
@@ -555,10 +747,15 @@ button:disabled {
   50% {
     transform: translateY(-8px);
   }
+
 }
 
 .anonymous-box h3 {
-  font-family: "Press Start 2P", monospace;
+
+  font-family:
+    "Press Start 2P",
+    monospace;
+
   font-size: 11px;
 
   color: #ff83ce;
@@ -567,13 +764,16 @@ button:disabled {
 }
 
 .anonymous-box p {
+
   font-size: 20px;
+
   line-height: 1.2;
 
   color: #d9c8e7;
 }
 
 .no-judgment {
+
   margin-top: 20px;
 
   color: #79eaff;
@@ -582,11 +782,35 @@ button:disabled {
 }
 
 
-/* =========================================
+/* =================================
+   PRIVATE NOTE
+================================= */
+
+.private-note {
+
+  margin-top: 25px;
+
+  padding: 14px;
+
+  text-align: center;
+
+  border: 2px solid #49306b;
+
+  background:
+    rgba(8,3,20,.7);
+
+  color: #aa9abc;
+
+  font-size: 17px;
+}
+
+
+/* =================================
    FOOTER
-========================================= */
+================================= */
 
 footer {
+
   text-align: center;
 
   margin-top: 30px;
@@ -597,54 +821,69 @@ footer {
 }
 
 
-/* =========================================
+/* =================================
    MOBILE
-========================================= */
+================================= */
 
 @media (max-width: 550px) {
 
   .game-container {
+
     width: 94%;
+
     padding-top: 20px;
   }
 
   .arcade-header {
+
     padding: 11px;
+
     font-size: 7px;
   }
 
   .hero {
+
     padding-top: 40px;
   }
 
   .subtitle {
+
     font-size: 9px;
   }
 
   .instruction {
+
     font-size: 18px;
   }
 
   .message-card {
+
     padding: 20px;
-    box-shadow: 5px 5px 0 #512090;
+
+    box-shadow:
+      5px 5px 0 #512090;
   }
 
   .card-top {
+
     font-size: 6px;
   }
 
   .planet-one {
+
     width: 55px;
     height: 55px;
   }
 
   .planet-two {
+
     width: 35px;
     height: 35px;
   }
 
   .pixel-ship {
+
     font-size: 30px;
   }
+
 }
