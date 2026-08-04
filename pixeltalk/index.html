@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PixelTalk — Anonymous Freedom Wall</title>
+
+  <meta
+    name="description"
+    content="PixelTalk — say what you want, anonymously."
+  >
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Pixel / Retro fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+    rel="stylesheet"
+  >
+</head>
+
+<body>
+
+  <!-- =========================
+       RETRO SPACE BACKGROUND
+  ========================== -->
+
+  <div class="space-background">
+
+    <div class="stars stars-one"></div>
+    <div class="stars stars-two"></div>
+    <div class="stars stars-three"></div>
+
+    <div class="planet planet-one"></div>
+    <div class="planet planet-two"></div>
+
+    <!-- Moving pixel spaceship -->
+    <div class="pixel-ship">🚀</div>
+
+    <!-- Floating elements -->
+    <div class="pixel-heart heart-one">💗</div>
+    <div class="pixel-heart heart-two">💜</div>
+    <div class="pixel-heart heart-three">💙</div>
+
+  </div>
+
+
+  <!-- =========================
+       MAIN CONTENT
+  ========================== -->
+
+  <main class="game-container">
+
+    <!-- TOP ARCADE BAR -->
+    <header class="arcade-header">
+
+      <div class="score">
+        ⭐ <span id="score">00123</span>
+      </div>
+
+      <div class="logo-small">
+        PIXELTALK
+      </div>
+
+      <div class="lives">
+        ❤️ ×03
+      </div>
+
+    </header>
+
+
+    <!-- TITLE -->
+    <section class="hero">
+
+      <div class="pixel-label">
+        ✦ JUST A FREE SPACE ✦
+      </div>
+
+      <h1>PIXELTALK</h1>
+
+      <p class="subtitle">
+        ANONYMOUS FREEDOM WALL
+      </p>
+
+      <p class="instruction">
+        INSERT THOUGHTS. PRESS SEND.
+      </p>
+
+      <div class="player-status">
+        🟢 PLAYER 1 • ONLINE
+      </div>
+
+    </section>
+
+
+    <!-- MESSAGE CARD -->
+    <section class="message-card">
+
+      <div class="card-top">
+        <span>💬</span>
+        <span>MESSAGE TERMINAL</span>
+        <span>💬</span>
+      </div>
+
+      <h2>SAY SOMETHING</h2>
+
+      <p class="description">
+        Say whatever you want.<br>
+        Your message is anonymous.
+      </p>
+
+
+      <form id="messageForm">
+
+        <textarea
+          id="messageInput"
+          maxlength="500"
+          placeholder="Type your thoughts here..."
+          required
+        ></textarea>
+
+        <div class="character-count">
+          <span id="charCount">0</span>/500
+        </div>
+
+        <button type="submit" id="sendButton">
+          🚀 SEND MESSAGE
+        </button>
+
+      </form>
+
+
+      <div id="statusMessage" class="status-message"></div>
+
+    </section>
+
+
+    <!-- DISCLAIMER -->
+    <section class="anonymous-box">
+
+      <div class="pixel-icon">
+        👾
+      </div>
+
+      <h3>YOUR MESSAGE IS ANONYMOUS.</h3>
+
+      <p>
+        Say something you've always wanted to say,
+        leave a little note, or simply let it out.
+      </p>
+
+      <div class="no-judgment">
+        ✦ NO NAME. NO JUDGMENT. JUST SAY IT. ✦
+      </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+      © 2026 PixelTalk by KLOWI
+    </footer>
+
+  </main>
+
+
+  <!-- =========================
+       FIREBASE + SCRIPT
+  ========================== -->
+
+  <script type="module" src="script.js"></script>
+
+</body>
+</html>
