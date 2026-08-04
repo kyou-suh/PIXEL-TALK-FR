@@ -398,10 +398,10 @@
 
         } catch (error) {
 
-          console.error("Firebase Login Error:", error);
+          console.log("FULL FIREBASE ERROR:", error);
 
           loginMessage.textContent =
-            "❌" + error.code;
+            `${error.code} - ${error.message}`;
 
           loginMessage.className =
             "message error";
