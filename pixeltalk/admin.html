@@ -1,576 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>PixelTalk Admin</title>
+<title>PixelTalk Admin</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
-    rel="stylesheet"
-  >
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#12002f;
+background-image:
+linear-gradient(135deg,#12002f,#22004f,#12002f);
+color:white;
+padding:20px;
+min-height:100vh;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+.container{
+max-width:800px;
+margin:auto;
+}
 
-    body {
-      min-height: 100vh;
-      padding: 25px;
+.card{
+background:#1d0b3b;
+border:3px solid #ff4fb2;
+border-radius:12px;
+padding:20px;
+box-shadow:0 0 20px rgba(255,0,150,.35);
+}
 
-      font-family: "VT323", monospace;
-      color: white;
+h1{
+text-align:center;
+margin-bottom:10px;
+color:#ff67c4;
+}
 
-      background:
-        radial-gradient(circle at 20% 20%, #51248f 0%, transparent 25%),
-        radial-gradient(circle at 80% 80%, #8b174e 0%, transparent 30%),
-        linear-gradient(135deg, #090021, #160039 45%, #09001f);
-    }
+.subtitle{
+text-align:center;
+margin-bottom:25px;
+color:#9ee7ff;
+}
 
-    .container {
-      width: min(700px, 100%);
-      margin: auto;
-    }
+input{
+width:100%;
+padding:15px;
+margin:15px 0;
+font-size:18px;
+border:none;
+border-radius:8px;
+outline:none;
+background:#2c1655;
+color:white;
+}
 
-    .header {
-      text-align: center;
-      margin: 30px 0;
-    }
+button{
+width:100%;
+padding:15px;
+font-size:18px;
+font-weight:bold;
+background:#ff4fb2;
+border:none;
+border-radius:8px;
+color:white;
+cursor:pointer;
+transition:.2s;
+}
 
-    .header h1 {
-      font-family: "Press Start 2P", monospace;
-      font-size: clamp(22px, 6vw, 38px);
-      color: #ff65bd;
-      text-shadow: 4px 4px 0 #6324a5;
-    }
+button:hover{
+background:#ff77c8;
+}
 
-    .header p {
-      margin-top: 15px;
-      font-size: 21px;
-      color: #8eeeff;
-    }
+#loginMessage{
+margin-top:15px;
+text-align:center;
+font-weight:bold;
+}
 
-    .panel {
-      padding: 25px;
+#inbox{
+display:none;
+}
 
-      background: rgba(20, 5, 40, 0.95);
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
 
-      border: 3px solid #ff55b8;
+.logout{
+width:auto;
+padding:10px 15px;
+background:#ff4b6e;
+}
 
-      box-shadow:
-        7px 7px 0 #512090,
-        0 0 25px rgba(255, 62, 185, .2);
-    }
+.messageCard{
+background:#29124d;
+border-left:5px solid #ff4fb2;
+padding:15px;
+margin-bottom:15px;
+border-radius:8px;
+}
 
-    .panel h2 {
-      font-family: "Press Start 2P", monospace;
-      font-size: 13px;
-      color: #79eaff;
-      margin-bottom: 25px;
-    }
+.messageCard p{
+font-size:18px;
+margin-bottom:10px;
+white-space:pre-wrap;
+}
 
-    input {
-      width: 100%;
-      padding: 15px;
-      margin-bottom: 15px;
+.messageCard small{
+color:#c9b7ff;
+}
 
-      border: 2px solid #8b4bd3;
-      outline: none;
+.empty{
+text-align:center;
+padding:30px;
+opacity:.7;
+}
+</style>
 
-      background: #080516;
-      color: white;
-
-      font-family: "VT323", monospace;
-      font-size: 21px;
-    }
-
-    input:focus {
-      border-color: #ff5cbd;
-    }
-
-    button {
-      width: 100%;
-      padding: 16px;
-
-      border: 3px solid white;
-
-      background: #ff3eaa;
-      color: white;
-
-      font-family: "Press Start 2P", monospace;
-      font-size: 10px;
-
-      cursor: pointer;
-
-      box-shadow: 5px 5px 0 #6c279b;
-    }
-
-    button:hover {
-      background: #ff64bd;
-    }
-
-    .message {
-      margin-top: 18px;
-      text-align: center;
-      font-size: 20px;
-    }
-
-    .error {
-      color: #ff829f;
-    }
-
-    .success {
-      color: #8dffbd;
-    }
-
-    #inbox {
-      display: none;
-    }
-
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-
-      margin-bottom: 20px;
-    }
-
-    .top-bar h2 {
-      margin: 0;
-    }
-
-    #logoutButton {
-      width: auto;
-      padding: 10px 14px;
-      font-size: 8px;
-      box-shadow: 3px 3px 0 #6c279b;
-    }
-
-    .rant {
-      margin-bottom: 18px;
-      padding: 18px;
-
-      background: #100622;
-
-      border: 2px solid #713bb0;
-
-      box-shadow: 4px 4px 0 #2e1550;
-    }
-
-    .rant p {
-      font-size: 23px;
-      line-height: 1.15;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-    }
-
-    .rant small {
-      display: block;
-      margin-top: 12px;
-
-      color: #9f8caf;
-      font-size: 17px;
-    }
-
-    .empty {
-      text-align: center;
-      padding: 30px 10px;
-
-      color: #a994b7;
-      font-size: 21px;
-    }
-
-    @media (max-width: 500px) {
-      body {
-        padding: 15px;
-      }
-
-      .panel {
-        padding: 18px;
-      }
-
-      .top-bar {
-        align-items: flex-start;
-      }
-
-      #logoutButton {
-        font-size: 7px;
-      }
-    }
-  </style>
 </head>
 
 <body>
 
-  <main class="container">
+<div class="container">
 
-    <header class="header">
-      <h1>PIXELTALK</h1>
-      <p>🔐 ADMIN CONTROL ROOM</p>
-    </header>
+<div class="card" id="loginPanel">
 
+<h1>🎮 PixelTalk</h1>
 
-    <!-- LOGIN -->
-    <section class="panel" id="loginPanel">
+<p class="subtitle">
+Private Admin Panel
+</p>
 
-      <h2>👾 ADMIN LOGIN</h2>
+<input
+type="password"
+id="pin"
+placeholder="Enter Admin PIN">
 
-      <form id="loginForm">
+<button id="loginBtn">
+Unlock Inbox
+</button>
 
-        <input
-          type="email"
-          id="email"
-          placeholder="Admin email"
-          autocomplete="email"
-          required
-        >
+<div id="loginMessage"></div>
 
-        <input
-          type="password"
-          id="password"
-          placeholder="Password"
-          autocomplete="current-password"
-          required
-        >
+</div>
 
-        <button type="submit">
-          🎮 LOGIN
-        </button>
+<div class="card" id="inbox">
 
-      </form>
+<div class="topbar">
 
-      <div id="loginMessage" class="message"></div>
+<h2>💌 Anonymous Messages</h2>
 
-    </section>
+<button
+class="logout"
+id="logoutButton">
+Logout
+</button>
 
+</div>
 
-    <!-- PRIVATE INBOX -->
-    <section class="panel" id="inbox">
+<div id="messagesList">
 
-      <div class="top-bar">
+<div class="empty">
 
-        <h2>💌 RANT INBOX</h2>
+Loading...
 
-        <button id="logoutButton">
-          LOGOUT
-        </button>
+</div>
 
-      </div>
+</div>
 
-      <div id="messagesList"></div>
+</div>
 
-    </section>
+<script type="module">
 
-  </main>
+// ==============================
+// FIREBASE IMPORTS
+// ==============================
 
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-  <script type="module">
+import {
+  getFirestore,
+  collection,
+  query,
+  orderBy,
+  onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-    // ============================================
-    // FIREBASE
-    // ============================================
+// ==============================
+// FIREBASE CONFIG
+// ==============================
 
-    import {
-      initializeApp
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyDmyY0J2uDjTJHfwTKPJIetLpZu_8j-2t0",
+  authDomain: "pixeltalk-web.firebaseapp.com",
+  projectId: "pixeltalk-web",
+  storageBucket: "pixeltalk-web.firebasestorage.app",
+  messagingSenderId: "212734467277",
+  appId: "1:212734467277:web:2521c220cbb551ab54dd84"
+};
 
-    import {
-      getAuth,
-      signInWithEmailAndPassword,
-      onAuthStateChanged,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-    import {
-      getFirestore,
-      collection,
-      query,
-      orderBy,
-      onSnapshot
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+// ==============================
+// ADMIN PIN
+// ==============================
 
+const ADMIN_PIN = "041107";
 
-    // ============================================
-    // FIREBASE CONFIG
-    // ============================================
+// ==============================
+// ELEMENTS
+// ==============================
 
-    const firebaseConfig = {
+const loginPanel = document.getElementById("loginPanel");
+const inbox = document.getElementById("inbox");
+const pin = document.getElementById("pin");
+const loginBtn = document.getElementById("loginBtn");
+const loginMessage = document.getElementById("loginMessage");
+const logoutButton = document.getElementById("logoutButton");
+const messagesList = document.getElementById("messagesList");
 
-      apiKey:
-        "AIzaSyDmyY0J2uDjTJHfwTKPJIetLpZu_8j-2t0",
+// ==============================
+// AUTO LOGIN
+// ==============================
 
-      authDomain:
-        "pixeltalk-web.firebaseapp.com",
+if (sessionStorage.getItem("pixeltalk_admin") === "true") {
+  showInbox();
+}
 
-      projectId:
-        "pixeltalk-web",
+// ==============================
+// LOGIN
+// ==============================
 
-      storageBucket:
-        "pixeltalk-web.firebasestorage.app",
+loginBtn.addEventListener("click", () => {
 
-      messagingSenderId:
-        "212734467277",
+  if (pin.value === ADMIN_PIN) {
 
-      appId:
-        "1:212734467277:web:2521c220cbb551ab54dd84",
+    sessionStorage.setItem("pixeltalk_admin", "true");
 
-      measurementId:
-        "G-33DH0JJNN1"
+    showInbox();
 
-    };
+  } else {
 
+    loginMessage.textContent = "❌ Wrong PIN";
+    pin.value = "";
 
-    // ============================================
-    // INITIALIZE
-    // ============================================
+  }
 
-    const app =
-      initializeApp(firebaseConfig);
+});
 
-    const auth =
-      getAuth(app);
+// ==============================
+// SHOW INBOX
+// ==============================
 
-    const db =
-      getFirestore(app);
+function showInbox() {
 
+  loginPanel.style.display = "none";
+  inbox.style.display = "block";
 
-    // ============================================
-    // ELEMENTS
-    // ============================================
+  loadMessages();
 
-    const loginPanel =
-      document.getElementById("loginPanel");
+}
 
-    const inbox =
-      document.getElementById("inbox");
+// ==============================
+// LOGOUT
+// ==============================
 
-    const loginForm =
-      document.getElementById("loginForm");
+logoutButton.addEventListener("click", () => {
 
-    const emailInput =
-      document.getElementById("email");
+  sessionStorage.removeItem("pixeltalk_admin");
 
-    const passwordInput =
-      document.getElementById("password");
+  location.reload();
 
-    const loginMessage =
-      document.getElementById("loginMessage");
+});
 
-    const logoutButton =
-      document.getElementById("logoutButton");
+// ==============================
+// LOAD FIRESTORE
+// ==============================
 
-    const messagesList =
-      document.getElementById("messagesList");
+function loadMessages() {
 
+  const q = query(
+    collection(db, "messages"),
+    orderBy("createdAt", "desc")
+  );
 
-    // ============================================
-    // LOGIN
-    // ============================================
+  onSnapshot(
+    q,
 
-    loginForm.addEventListener(
-      "submit",
-      async (event) => {
+    (snapshot) => {
 
-        event.preventDefault();
+      messagesList.innerHTML = "";
 
-        loginMessage.textContent =
-          "🎮 LOGGING IN...";
+      if (snapshot.empty) {
 
-        loginMessage.className =
-          "message";
+        messagesList.innerHTML = `
+          <div class="empty">
+            📭 No messages yet.
+          </div>
+        `;
 
-
-        try {
-
-          await signInWithEmailAndPassword(
-            auth,
-            emailInput.value.trim(),
-            passwordInput.value
-          );
-
-        } catch (error) {
-
-          console.log("FULL FIREBASE ERROR:", error);
-
-          loginMessage.textContent =
-            `${error.code} - ${error.message}`;
-
-          loginMessage.className =
-            "message error";
-
-        }
+        return;
 
       }
-    );
 
+      snapshot.forEach((doc) => {
 
-    // ============================================
-    // AUTH STATE
-    // ============================================
+        const data = doc.data();
 
-    onAuthStateChanged(
-      auth,
-      (user) => {
+        const card = document.createElement("div");
+        card.className = "messageCard";
 
-        if (user) {
+        const text = document.createElement("p");
+        text.textContent = data.message || "";
 
-          // Logged in
-          loginPanel.style.display =
-            "none";
+        const date = document.createElement("small");
 
-          inbox.style.display =
-            "block";
+        if (data.createdAt) {
 
-          loadMessages();
+          date.textContent =
+            data.createdAt.toDate().toLocaleString();
 
         } else {
 
-          // Logged out
-          loginPanel.style.display =
-            "block";
-
-          inbox.style.display =
-            "none";
-
-          messagesList.innerHTML =
-            "";
+          date.textContent = "Just now";
 
         }
 
-      }
-    );
+        card.appendChild(text);
+        card.appendChild(date);
 
+        messagesList.appendChild(card);
 
-    // ============================================
-    // LOAD MESSAGES
-    // ============================================
+      });
 
-    function loadMessages() {
+    },
 
-      const messagesQuery = query(
-        collection(db, "messages"),
-        orderBy("createdAt", "desc")
-      );
+    (error) => {
 
+      messagesList.innerHTML = `
+        <div class="empty">
+          ❌ ${error.message}
+        </div>
+      `;
 
-      onSnapshot(
-        messagesQuery,
-        (snapshot) => {
-
-          messagesList.innerHTML =
-            "";
-
-
-          if (snapshot.empty) {
-
-            messagesList.innerHTML = `
-              <div class="empty">
-                📭 NO MESSAGES YET.
-              </div>
-            `;
-
-            return;
-          }
-
-
-          snapshot.forEach(
-            (doc) => {
-
-              const data =
-                doc.data();
-
-
-              const rant =
-                document.createElement("article");
-
-              rant.className =
-                "rant";
-
-
-              const messageText =
-                document.createElement("p");
-
-              messageText.textContent =
-                data.message || "";
-
-
-              const date =
-                document.createElement("small");
-
-              if (data.createdAt) {
-
-                date.textContent =
-                  "🕐 " +
-                  data.createdAt
-                    .toDate()
-                    .toLocaleString();
-
-              } else {
-
-                date.textContent =
-                  "🕐 Just now";
-
-              }
-
-
-              rant.appendChild(
-                messageText
-              );
-
-              rant.appendChild(
-                date
-              );
-
-              messagesList.appendChild(
-                rant
-              );
-
-            }
-          );
-
-        },
-
-        (error) => {
-
-          console.error(
-            "Firestore error:",
-            error
-          );
-
-          messagesList.innerHTML = `
-            <div class="empty">
-              ❌ COULDN'T LOAD MESSAGES.
-            </div>
-          `;
-
-        }
-      );
+      console.error(error);
 
     }
 
+  );
 
-    // ============================================
-    // LOGOUT
-    // ============================================
+}
 
-    logoutButton.addEventListener(
-      "click",
-      async () => {
-
-        await signOut(auth);
-
-      }
-    );
-
-  </script>
+</script>
 
 </body>
 </html>
